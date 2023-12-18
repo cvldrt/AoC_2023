@@ -54,7 +54,7 @@ std::set<node> get_adj(city_map& m, node& n) {
 int find_path(city_map& m, int x_start, int y_start, int x_end, int y_end) {
     std::map<node, int> distances;
 
-    distances[{x_start, y_start}] = m[y_start][x_start] - 48;
+    distances[{x_start, y_start}] = 0;
 
     auto node_cmp = [&distances](const node& l, const node& r) {
         return distances[l] > distances[r];
