@@ -32,19 +32,19 @@ void load_map(city_map& m, std::fstream& fs) {
 std::set<node> get_adj(city_map& m, node& n) {
     std::set<node> res;
 
-    if (n.x > 0 && n.left > 0) {
+    if (n.x > 0 && n.left > 0 && n.right == 3) {
         res.insert({n.x - 1, n.y, 3, 3, n.left - 1, 3});
     }
 
-    if (n.x < m[0].size() - 1 && n.right > 0) {
+    if (n.x < m[0].size() - 1 && n.right > 0 && n.left == 3) {
         res.insert({n.x + 1, n.y, 3, 3, 3, n.right - 1});
     }
 
-    if (n.y > 0 && n.up > 0) {
+    if (n.y > 0 && n.up > 0 && n.down == 3) {
         res.insert({n.x, n.y - 1, n.up - 1, 3, 3, 3});
     }
 
-    if (n.y < m.size() - 1 && n.down > 0) {
+    if (n.y < m.size() - 1 && n.down > 0 && n.up == 3) {
         res.insert({n.x, n.y + 1, 3, n.down - 1, 3, 3});
     }
 
@@ -88,7 +88,7 @@ int find_path(city_map& m, int x_start, int y_start, int x_end, int y_end) {
 }
 
 int main() {
-    std::fstream input("input_small.txt");
+    std::fstream input("input.txt");
 
     city_map m;
     load_map(m, input);
